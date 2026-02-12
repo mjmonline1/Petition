@@ -165,6 +165,13 @@ footer {
     align-items: center;
   }
 }
+
+/* Hide empty column on mobile */
+@media (max-width: 767px) {
+  .empty-column-on-mobile {
+    display: none;
+  }
+}
 </style>
 </head>
 
@@ -191,10 +198,9 @@ footer {
       <p>Some chemicals used in farming and food processing remain in the final product.</p>
       <p>Consumers are not told everything.</p>
       <p>Families are left guessing about what they are eating.</p>
-    </div>
-    <div>
       <p><strong>People have a right to full transparency.</strong></p>
     </div>
+    <div class="empty-column-on-mobile"></div>
   </section>
 
   <!-- PATH -->

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know What's In Your Food</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #1F7A4C;
+  --primary-dark: #166534;
+  --text-dark: #0F172A;
+  --muted: #475569;
+  --bg-light: #F8FAFC;
+  --card-bg: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+.section {
+  margin-bottom: 100px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(180deg, #F8FAFC 0%, #EAF5EF 100%);
+  border-radius: 16px;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+/* Headings */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+  color: var(--primary);
+}
+
+p {
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* CTA */
+.cta-btn {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 16px 36px;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero section">
+    <h1>You Deserve to Know What’s in Your Food.</h1>
+    <p>
+      Pesticide residues and processing chemicals can remain in food.
+      Full disclosure is not required.
+    </p>
+    <a href="https://petition.parliament.uk/petitions/754897" class="cta-btn">
+      Sign the Petition
+    </a>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section two-column">
+    <div>
+      <h2>The Problem</h2>
+      <p>Some chemicals used in farming and food processing remain in the final product.</p>
+      <p>Consumers are not told everything.</p>
+      <p>Families are left guessing about what they are eating.</p>
+    </div>
+    <div>
+      <p><strong>People have a right to full transparency.</strong></p>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section class="section card">
+    <h2>A Clear Path Forward</h2>
+    <ul>
+      <li><strong>10,000 signatures</strong> → Government must formally respond</li>
+      <li><strong>100,000 signatures</strong> → Parliament considers debate</li>
+    </ul>
+    <p>This is how public concern becomes public action.</p>
+  </section>
+
+  <!-- PLAN -->
+  <section class="section two-column">
+    <div>
+      <h2>A Simple Plan</h2>
+      <ul>
+        <li>Read the petition (1 minute)</li>
+        <li>Add your name</li>
+        <li>Share with one person</li>
+      </ul>
+    </div>
+    <div>
+      <a href="https://petition.parliament.uk/petitions/754897" class="cta-btn">
+        Add Your Name
+      </a>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="section card">
+    <h2>What Happens Next?</h2>
+    <p><strong>With support:</strong> Clearer labels. Informed choices. Accountability.</p>
+    <p><strong>Without support:</strong> Nothing changes.</p>
+  </section>
+
+</div>
+
+<footer>
+  UK Public Petition for Food Transparency
+</footer>
+
+</body>
+</html>

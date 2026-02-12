@@ -8,12 +8,13 @@
 
 <style>
 :root {
-  --primary: #1F7A4C;
-  --primary-dark: #166534;
-  --text-dark: #0F172A;
-  --muted: #475569;
-  --bg-light: #F8FAFC;
+  --primary: #10B981;
+  --primary-dark: #059669;
+  --text-dark: #1F2937;
+  --muted: #6B7280;
+  --bg-light: #F9FAFB;
   --card-bg: #FFFFFF;
+  --border-color: #E5E7EB;
 }
 
 * {
@@ -26,54 +27,62 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-light);
   color: var(--text-dark);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* Layout */
 .container {
   max-width: 1000px;
   margin: auto;
-  padding: 80px 20px;
+  padding: 60px 20px;
 }
 
 .section {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 /* Hero */
 .hero {
   text-align: center;
-  padding: 120px 20px;
-  background: linear-gradient(180deg, #F8FAFC 0%, #EAF5EF 100%);
-  border-radius: 16px;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 100%);
+  border-radius: 24px;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: var(--muted);
   max-width: 600px;
-  margin: 0 auto 30px;
+  margin: 0 auto 40px;
 }
 
 /* Headings */
 h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
 }
 
 /* Cards */
 .card {
   background: var(--card-bg);
   padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .card h2 {
@@ -81,16 +90,17 @@ h2 {
 }
 
 p {
-  margin-bottom: 16px;
-  font-size: 1.05rem;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
 }
 
 ul {
   margin-left: 20px;
+  padding-left: 10px;
 }
 
 li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 /* CTA */
@@ -98,31 +108,54 @@ li {
   display: inline-block;
   background: var(--primary);
   color: white;
-  padding: 16px 36px;
+  padding: 18px 40px;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
 .cta-btn:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Problem Section */
+.two-column {
+  padding: 40px;
+  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 60px 20px;
+  padding: 40px 20px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 60px;
 }
 
 /* Desktop */
 @media (min-width: 768px) {
+  .container {
+    padding: 80px 20px;
+  }
+
+  .hero {
+    padding: 120px 20px;
+  }
 
   .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
+  }
+  
+  .section {
+    margin-bottom: 100px;
   }
 
   .two-column {

@@ -157,6 +157,83 @@ body {
   color: #a7f3d0;
 }
 
+/* === NEWS BULLETIN BOARD === */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 20px;
+}
+.live-badge__dot {
+  width: 6px; height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.news-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: box-shadow 0.2s;
+}
+.news-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+.news-card--live {
+  border-left: 3px solid var(--primary);
+}
+.news-card__source {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.news-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.news-card__link {
+  font-size: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: auto;
+  font-weight: 600;
+}
+.news-card__link:hover { text-decoration: underline; }
+
 /* === MOBILE === */
 @media (max-width: 600px) {
   .sticky-bar__label { display: none; }
@@ -165,6 +242,7 @@ body {
   .hero { padding: 50px 20px 40px; }
   .hero__headline { font-size: 1.75rem; }
   .trust-signals { flex-direction: column; gap: 6px; }
+  .news-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -206,6 +284,48 @@ body {
     </div>
   </div>
   <div class="hero__deadline">Deadline: <strong>6 August 2026</strong></div>
+</section>
+
+<!-- BULLETIN BOARD -->
+<section class="section section--tinted" id="news">
+  <div class="container">
+    <div class="news-header">
+      <div>
+        <div class="section__eyebrow">📰 Latest coverage</div>
+        <h2 class="section__title" style="margin-bottom:0">Pesticides in the News</h2>
+      </div>
+      <div class="live-badge">
+        <span class="live-badge__dot"></span>
+        Live feed
+      </div>
+    </div>
+
+    <div class="news-grid" id="news-grid">
+
+      <!-- SEEDED ARTICLE 1 -->
+      <div class="news-card">
+        <div class="news-card__source">The Guardian · May 2026</div>
+        <h3 class="news-card__title">
+          Typical English roast dinner potentially drenched in 102 pesticides, says report
+        </h3>
+        <a href="https://www.theguardian.com/environment/2026/may/14/typical-english-roast-dinner-potentially-drenched-in-102-pesticides-says-report"
+           target="_blank" rel="noopener noreferrer"
+           class="news-card__link">Read article →</a>
+      </div>
+
+      <!-- SEEDED ARTICLE 2 -->
+      <div class="news-card">
+        <div class="news-card__source">The Independent</div>
+        <h3 class="news-card__title">
+          Supermarket pesticides on fruit and vegetables linked to cancer risk
+        </h3>
+        <a href="https://www.independent.co.uk/news/health/supermarket-pesticides-fruit-vegetables-cancer-b2925216.html"
+           target="_blank" rel="noopener noreferrer"
+           class="news-card__link">Read article →</a>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 </body>

@@ -643,5 +643,24 @@ body {
 }());
 </script>
 
+<script>
+(function () {
+  var PAGE_URL  = window.location.href;
+  var TEXT      = 'I just signed the UK petition for mandatory pesticide labelling on food. ' +
+                  'You have the right to know what\'s in your food — sign here:';
+  var encodedUrl  = encodeURIComponent(PAGE_URL);
+  var encodedText = encodeURIComponent(TEXT);
+
+  var fb = document.getElementById('share-fb');
+  if (fb) fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+
+  var x = document.getElementById('share-x');
+  if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodedText + '&url=' + encodedUrl;
+
+  var wa = document.getElementById('share-wa');
+  if (wa) wa.href = 'https://wa.me/?text=' + encodedText + '%20' + encodedUrl;
+}());
+</script>
+
 </body>
 </html>

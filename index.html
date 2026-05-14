@@ -244,6 +244,43 @@ body {
   .trust-signals { flex-direction: column; gap: 6px; }
   .news-grid { grid-template-columns: 1fr; }
 }
+
+/* === WHY IT MATTERS === */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: #f0fdf4;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 18px;
+}
+.stat-card__number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #064e3b;
+  line-height: 1;
+}
+.stat-card__label {
+  font-size: 12px;
+  color: var(--text-dark);
+  margin-top: 5px;
+  line-height: 1.4;
+}
+.why-copy {
+  font-size: 15px;
+  color: var(--text-dark);
+  line-height: 1.9;
+  border-left: 3px solid var(--primary);
+  padding-left: 18px;
+}
+
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -325,6 +362,41 @@ body {
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="section section--light" id="why">
+  <div class="container">
+    <div class="section__eyebrow">The problem</div>
+    <h2 class="section__title">Why this matters to everyone</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card__number">320+</div>
+        <div class="stat-card__label">pesticide residues legally permitted on UK food</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">0</div>
+        <div class="stat-card__label">required to be listed on your food label</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">1 in 4</div>
+        <div class="stat-card__label">UK adults have a diagnosed food sensitivity</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">£0</div>
+        <div class="stat-card__label">estimated cost to the food industry to add disclosure to labels</div>
+      </div>
+    </div>
+
+    <p class="why-copy">
+      Whether you shop at Waitrose or Lidl, eat organic or not, vote left or right —
+      <strong>you deserve to know what you're putting in your body.</strong>
+      Right now, UK food labelling law requires producers to list almost everything
+      <em>except</em> pesticide residues and processing aids. This petition asks for one
+      thing: transparency. Nothing more.
+    </p>
   </div>
 </section>
 

@@ -3,245 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Know What's In Your Food</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<title>Know What’s In Your Food — Sign the UK Petition</title>
+<meta name="description" content="UK Parliamentary Petition #754897. You have the right to know what pesticides are in your food. Sign before 6 August 2026.">
+<meta property="og:title" content="Know What’s In Your Food — Sign the UK Petition">
+<meta property="og:description" content="UK law doesn’t require pesticide residues to be listed on food labels. You have the right to know. Sign petition #754897.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://mjmonline1.github.io/Petition/">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* === VARIABLES === */
 :root {
   --primary: #10B981;
   --primary-dark: #059669;
+  --hero-dark: #064e3b;
+  --hero-darker: #111827;
   --text-dark: #1F2937;
   --muted: #6B7280;
   --bg-light: #F9FAFB;
   --card-bg: #FFFFFF;
   --border-color: #E5E7EB;
+  --sticky-height: 52px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: ‘Inter’, sans-serif;
   background: var(--bg-light);
   color: var(--text-dark);
   line-height: 1.7;
+  padding-top: var(--sticky-height);
 }
 
-/* Layout */
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 60px 20px;
-}
-
-.section {
-  margin-bottom: 80px;
-}
-
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 100%);
-  border-radius: 24px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
-
-.hero p {
-  font-size: 1.25rem;
-  color: var(--muted);
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-
-/* Headings */
-h2 {
-  font-size: 2rem;
-  margin-bottom: 24px;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-
-/* Cards */
-.card {
-  background: var(--card-bg);
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.card h2 {
-  color: var(--primary);
-}
-
-p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-ul {
-  margin-left: 20px;
-  padding-left: 10px;
-}
-
-li {
-  margin-bottom: 12px;
-}
-
-/* CTA */
-.cta-btn {
+/* === BUTTONS === */
+.btn {
   display: inline-block;
   background: var(--primary);
   color: white;
-  padding: 18px 40px;
+  font-weight: 700;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+  font-family: inherit;
+}
+.btn:hover { background: var(--primary-dark); }
+.btn--sm  { padding: 8px 18px; font-size: 13px; }
+.btn--lg  { padding: 16px 40px; font-size: 17px; }
+
+/* === STICKY BAR === */
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--sticky-height);
+  background: var(--hero-darker);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(16,185,129,0.3);
+}
+.sticky-bar__label {
+  font-size: 12px;
+  color: #6ee7b7;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  letter-spacing: 0.5px;
 }
 
-.cta-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 7px 20px rgba(16, 185, 129, 0.4);
+/* === NAV === */
+.nav {
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__brand {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--primary);
 }
 
-/* Problem Section */
-.two-column {
-  padding: 40px;
-  border-radius: 24px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 40px 20px;
+/* === SECTION CHROME === */
+.section { padding: 60px 24px; }
+.section--light   { background: white; }
+.section--tinted  { background: var(--bg-light); }
+.section--dark    { background: var(--hero-dark); color: white; }
+.section--darker  { background: var(--hero-darker); color: white; }
+.container { max-width: 900px; margin: 0 auto; }
+.section__eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   color: var(--muted);
-  font-size: 1rem;
-  border-top: 1px solid var(--border-color);
-  margin-top: 60px;
+  margin-bottom: 6px;
 }
-
-/* Desktop */
-@media (min-width: 768px) {
-  .container {
-    padding: 80px 20px;
-  }
-
-  .hero {
-    padding: 120px 20px;
-  }
-
-  .hero h1 {
-    font-size: 3.5rem;
-  }
-  
-  .section {
-    margin-bottom: 100px;
-  }
-
-  .two-column {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
+.section--dark  .section__eyebrow,
+.section--darker .section__eyebrow { color: #6ee7b7; }
+.section__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 24px;
 }
+.section--dark  .section__title,
+.section--darker .section__title { color: white; }
 
-/* Hide empty column on mobile */
-@media (max-width: 767px) {
-  .empty-column-on-mobile {
-    display: none;
-  }
+/* === MOBILE === */
+@media (max-width: 600px) {
+  .sticky-bar__label { display: none; }
+  .nav__brand        { font-size: 13px; }
+  .section { padding: 40px 20px; }
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-
-  <!-- HERO -->
-  <section class="hero section">
-    <h1>You Deserve to Know What’s in Your Food.</h1>
-    <p>
-      Pesticide residues and processing chemicals can remain in food.
-      Full disclosure is not required.
-    </p>
-    <a href="https://petition.parliament.uk/petitions/754897" class="cta-btn">
-      Sign the Petition
-    </a>
-  </section>
-
-  <!-- PROBLEM -->
-  <section class="section two-column">
-    <div>
-      <h2>The Problem</h2>
-      <p>Some chemicals used in farming and food processing remain in the final product.</p>
-      <p>Consumers are not told everything.</p>
-      <p>Families are left guessing about what they are eating.</p>
-      <p><strong>People have a right to full transparency.</strong></p>
-    </div>
-    <div class="empty-column-on-mobile"></div>
-  </section>
-
-  <!-- PATH -->
-  <section class="section card">
-    <h2>A Clear Path Forward</h2>
-    <ul>
-      <li><strong>10,000 signatures</strong> → Government must formally respond</li>
-      <li><strong>100,000 signatures</strong> → Parliament considers debate</li>
-    </ul>
-    <p>This is how public concern becomes public action.</p>
-  </section>
-
-  <!-- PLAN -->
-  <section class="section two-column">
-    <div>
-      <h2>A Simple Plan</h2>
-      <ul>
-        <li>Read the petition (1 minute)</li>
-        <li>Add your name</li>
-        <li>Share with one person</li>
-      </ul>
-    </div>
-    <div>
-      <a href="https://petition.parliament.uk/petitions/754897" class="cta-btn">
-        Add Your Name
-      </a>
-    </div>
-  </section>
-
-  <!-- OUTCOME -->
-  <section class="section card">
-    <h2>What Happens Next?</h2>
-    <p><strong>With support:</strong> Clearer labels. Informed choices. Accountability.</p>
-    <p><strong>Without support:</strong> Nothing changes.</p>
-  </section>
-
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <span class="sticky-bar__label">UK Parliamentary Petition #754897</span>
+  <a href="https://petition.parliament.uk/petitions/754897"
+     target="_blank" rel="noopener noreferrer"
+     class="btn btn--sm">✍ Sign the petition →</a>
 </div>
 
-<footer>
- UK Parliamentary Petition for Food Transparency
-</footer>
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav__brand">🌿 Know What’s In Your Food</span>
+  <a href="https://petition.parliament.uk/petitions/754897"
+     target="_blank" rel="noopener noreferrer"
+     class="btn btn--sm">✍ Sign the petition →</a>
+</nav>
 
 </body>
 </html>

@@ -303,6 +303,95 @@ body {
   .mid-cta__title { font-size: 1.4rem; }
   .btn--lg { padding: 14px 28px; font-size: 15px; }
 }
+
+/* === RESOURCES === */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.resource-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  display: block;
+}
+.resource-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(16,185,129,0.1);
+}
+.resource-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.resource-card__desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.resources-disclaimer {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 18px;
+}
+
+/* === SHARE STRIP === */
+.share-strip { text-align: center; }
+.share-strip__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+.share-strip__sub {
+  color: #9ca3af;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.share-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.share-btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  transition: opacity 0.2s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.share-btn:hover { opacity: 0.85; }
+.share-btn--fb { background: #1877f2; }
+.share-btn--x  { background: #000; }
+.share-btn--wa { background: #25d366; }
+
+/* === FOOTER === */
+.footer {
+  background: #0a0f1a;
+  padding: 40px 24px;
+  text-align: center;
+  color: #6b7280;
+}
+.footer__cta { margin-bottom: 20px; }
+.footer__meta { font-size: 12px; line-height: 2.2; }
+.footer__meta a { color: var(--primary); text-decoration: none; }
+
+@media (max-width: 600px) {
+  .share-buttons { flex-direction: column; align-items: center; }
+}
 </style>
 </head>
 <body>
@@ -438,6 +527,64 @@ body {
     <span>✓ UK residents &amp; citizens</span>
   </div>
 </section>
+
+<!-- EXTERNAL RESOURCES -->
+<section class="section section--tinted" id="resources">
+  <div class="container">
+    <div class="section__eyebrow">Do your own research</div>
+    <h2 class="section__title">Trusted sources — make up your own mind</h2>
+    <div class="resources-grid">
+      <a href="https://www.pan-uk.org" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <div class="resource-card__name">PAN-UK</div>
+        <div class="resource-card__desc">Pesticide Action Network — independent research on pesticide impacts</div>
+      </a>
+      <a href="https://www.food.gov.uk/safety-hygiene/pesticides" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <div class="resource-card__name">Food Standards Agency</div>
+        <div class="resource-card__desc">Official UK government data on pesticide residues in food</div>
+      </a>
+      <a href="https://www.which.co.uk/news/article/pesticides-in-food" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <div class="resource-card__name">Which?</div>
+        <div class="resource-card__desc">Consumer research and testing on food safety and labelling</div>
+      </a>
+      <a href="https://www.soilassociation.org/causes-campaigns/pesticides/" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <div class="resource-card__name">Soil Association</div>
+        <div class="resource-card__desc">Research on farming practices and food standards</div>
+      </a>
+      <a href="https://www.ewg.org/foodnews/" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <div class="resource-card__name">EWG Food News</div>
+        <div class="resource-card__desc">Environmental Working Group — annual Dirty Dozen &amp; Clean Fifteen lists</div>
+      </a>
+    </div>
+    <p class="resources-disclaimer">We're not telling you what to think. Here's where to look.</p>
+  </div>
+</section>
+
+<!-- SHARE STRIP -->
+<section class="section section--darker share-strip">
+  <h2 class="share-strip__title">Help spread the word</h2>
+  <p class="share-strip__sub">Share this page — the more people who know, the more who sign.</p>
+  <div class="share-buttons">
+    <a id="share-fb" href="#" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--fb">Share on Facebook</a>
+    <a id="share-x"  href="#" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x">Share on X</a>
+    <a id="share-wa" href="#" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--wa">Share on WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__cta">
+    <a href="https://petition.parliament.uk/petitions/754897"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn--lg">✍ Sign the petition →</a>
+  </div>
+  <div class="footer__meta">
+    <a href="https://petition.parliament.uk/petitions/754897" target="_blank" rel="noopener noreferrer">
+      petition.parliament.uk/petitions/754897
+    </a><br>
+    Petition #754897 · Deadline 6 August 2026<br>
+    Created by Michael Martin
+  </div>
+</footer>
 
 <script>
 (function () {

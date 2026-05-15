@@ -1,0 +1,142 @@
+{
+  "id": "019d90f0-445d-7596-bf34-2601b7455b48",
+  "startedAt": "2026-04-15T11:39:18.000Z",
+  "endedAt": "2026-04-15T11:39:21.598Z",
+  "endpoint": "search",
+  "formState": {
+    "extractSetupCompleted": false,
+    "urls": [],
+    "extractSchema": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "company_mission": {
+          "type": "string"
+        },
+        "supports_sso": {
+          "type": "boolean"
+        },
+        "is_open_source": {
+          "type": "boolean"
+        },
+        "is_in_yc": {
+          "type": "boolean"
+        }
+      }
+    },
+    "extractPrompt": "Extract the company details, following the schema.",
+    "enableWebSearch": false,
+    "constrainUrls": false,
+    "options": {
+      "onlyMainContent": false,
+      "parsePDF": true,
+      "stealthMode": false,
+      "excludeTags": [],
+      "includeTags": [],
+      "waitFor": "",
+      "timeout": "",
+      "maxAge": "2 days",
+      "ignoreSitemap": false,
+      "crawlEntireDomain": false,
+      "sitemap": "include",
+      "limit": "10",
+      "maxDepth": "",
+      "excludePaths": [],
+      "includePaths": [],
+      "includeSubdomains": false,
+      "search": "",
+      "scrapeContentFromSearchResults": true,
+      "timeBasedSearch": "",
+      "location": "",
+      "prompt": ""
+    },
+    "formats": [],
+    "sources": [
+      "web"
+    ],
+    "categories": [],
+    "jsonSchema": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "company_name": {
+          "type": "string"
+        },
+        "company_description": {
+          "type": "string"
+        }
+      }
+    },
+    "jsonPrompt": "",
+    "agent": {},
+    "url": "organisations interested in reducing use of pesticides in uk",
+    "endpoint": "search"
+  },
+  "status": "success",
+  "version": "0GV96pOwqmvY79qj9HLGV",
+  "isPreview": false,
+  "web": [
+    {
+      "url": "https://www.pan-uk.org/pesticide-free/",
+      "title": "Pesticide-Free Towns Campaign",
+      "description": "PAN UK is available to advise councils as they devise bespoke strategies for ending pesticide use tailored to fit their local context. Our Guide to Alternatives ...",
+      "position": 1
+    },
+    {
+      "url": "https://www.wildlifetrusts.org/news/more-ambition-needed-reduce-pesticides-say-wildlife-trusts",
+      "title": "More ambition needed to reduce pesticides, say The Wildlife Trusts",
+      "description": "The Wildlife Trusts believe that an alternative future does exist – with many nature-friendly farmers pioneering ways to reduce chemical use ...",
+      "position": 2
+    },
+    {
+      "url": "https://pesticidecollaboration.org/about-the-collaboration/",
+      "title": "About the collaboration",
+      "description": "The Pesticide Collaboration brings together health and environmental organisations, academics, trade unions, farming networks and consumer groups.",
+      "position": 3
+    },
+    {
+      "url": "https://earthsongfoundation.com/nature/pesticides-action-network-uk/",
+      "title": "Pesticide Action Network UK - Earthsong Foundation",
+      "description": "Pesticide Action Network UK is the only UK charity focused solely on tackling the problems caused by pesticides. Find out more about PAN UK.",
+      "position": 4
+    },
+    {
+      "url": "https://www.sustainweb.org/news/jun24-pesticide-collaboration-members-event/",
+      "title": "Urgent action is needed to reduce pesticide use in the UK",
+      "description": "The Pesticide Collaboration shares ambitious targets to reduce pesticide use in rural and urban areas, including requests to the government ...",
+      "position": 5
+    },
+    {
+      "url": "https://www.rspb.org.uk/helping-nature/what-we-do/influence-government-and-business/farming/pesticides",
+      "title": "How nature-friendly farming can help reduce pesticide use - RSPB",
+      "description": "We want to see agri-environment schemes that reward nature-friendly farming practices such as flower-rich margins and herbal leys.",
+      "position": 6
+    },
+    {
+      "url": "https://defraenvironment.blog.gov.uk/2025/03/25/government-publishes-first-pesticides-national-action-plan-in-a-decade/",
+      "title": "Government publishes first Pesticides National Action Plan in a ...",
+      "description": "The Action Plan sets out how all four UK governments will support farmers, growers and other land managers to increase their use of nature-based techniques.",
+      "position": 7
+    },
+    {
+      "url": "https://friendsoftheearth.uk/latest/modest-nationwide-pesticide-plan-published",
+      "title": "'Modest' nationwide pesticide plan published | Friends of the Earth",
+      "description": "A UK-wide government action plan to reduce pesticide risks to human health and the environment has been published today.",
+      "position": 8
+    },
+    {
+      "url": "https://pesticidecollaboration.org/go-pesticide-free/",
+      "title": "Go Pesticide-Free - The Pesticide Collaboration",
+      "description": "Over 100 councils across the UK have either ended their use of pesticides or taken significant steps towards doing so (50 are entirely pesticide-free). This is ...",
+      "position": 9
+    },
+    {
+      "url": "https://www.pan-uk.org/about-us/",
+      "title": "About Us - Pesticide Action Network UK",
+      "description": "We are the only UK charity tackling problems caused by pesticides and promoting safe and sustainable alternatives to pesticides.",
+      "position": 10
+    }
+  ],
+  "news": [],
+  "images": []
+}

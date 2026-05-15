@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Impact Petition Posters - Color Scheme Picker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;600;700;800&family=Anton&family=Oswald:wght@700&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Left sidebar */
+        .schemes-panel {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-right: 1px solid #333;
+            padding: 30px 20px;
+            overflow-y: auto;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .panel-header {
+            margin-bottom: 30px;
+        }
+
+        .panel-header h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .panel-header p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pro-tip {
+            background: linear-gradient(135deg, #ff6b35 0%, #e85d04 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ffd93d;
+        }
+
+        .pro-tip h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #ffd93d;
+        }
+
+        .pro-tip p {
+            font-size: 13px;
+            line-height: 1.4;
+            color: white;
+        }
+
+        .schemes-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .scheme-card {
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scheme-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--preview-bg-start), var(--preview-bg-end));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scheme-card:hover {
+            border-color: #555;
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        .scheme-card:hover::before {
+            opacity: 1;
+        }
+
+        .scheme-card.active {
+            border-color: #777;
+            background: #222;
+        }
+
+        .scheme-card.active::before {
+            opacity: 1;
+        }
+
+        .scheme-name {
+            font-family: 'Anton', sans-serif;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .color-swatches {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .swatch {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s;
+        }
+
+        .scheme-card:hover .swatch {
+            transform: scale(1.1);
+        }
+
+        .scheme-meta {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        .impact-badge {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* Right side - poster preview */
+        .preview-panel {
+            background: #f5f5f5;
+            padding: 60px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .preview-container {
+            position: relative;
+        }
+
+        .preview-label {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .poster {
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.4);
+            transform-origin: center;
+            --bg-color: #1a5f3a;
+            --accent-color: #ff6b35;
+            --accent-dark: #d94e1f;
+            --highlight-color: #ffd93d;
+            --text-color: #ffffff;
+        }
+
+        .poster-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-color);
+            transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Attention-grabbing patterns */
+        .diagonal-stripes {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.02) 20px,
+                rgba(255,255,255,0.02) 40px
+            );
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        /* SUPER BOLD TOP BANNER */
+        .alert-banner {
+            background: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 25px 40px;
+            font-family: 'Anton', sans-serif;
+            font-size: 42px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 8px solid var(--accent-dark);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .alert-banner::before {
+            content: '⚠';
+            position: absolute;
+            left: 40px;
+            font-size: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .alert-banner::after {
+            content: '⚠';
+            position: absolute;
+            right: 40px;
+            font-size: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .main-content {
+            padding: 50px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* MASSIVE HEADLINE */
+        .main-headline {
+            font-family: 'Anton', sans-serif;
+            font-size: 85px;
+            line-height: 1.05;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+        }
+
+        .main-headline .highlight {
+            color: var(--highlight-color);
+            display: block;
+            font-size: 95px;
+            margin-top: 15px;
+            letter-spacing: 0px;
+            text-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+            transition: all 0.5s;
+        }
+
+        /* HIGH CONTRAST BOX */
+        .problem-box {
+            background: white;
+            border-radius: 0;
+            padding: 30px;
+            margin: 30px 0;
+            border: 8px solid var(--accent-color);
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+        }
+
+        .problem-box h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 38px;
+            color: var(--bg-color);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.5s;
+        }
+
+        .problem-box p {
+            color: #1a1a1a;
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 600;
+            transition: all 0.5s;
+        }
+
+        .problem-box strong {
+            color: var(--accent-color);
+            font-weight: 800;
+            font-size: 19px;
+        }
+
+        /* BOLD CTA SECTION */
+        .cta-section {
+            margin-top: auto;
+            background: var(--highlight-color);
+            border-radius: 0;
+            padding: 40px;
+            box-shadow: 0 -10px 0 var(--accent-color);
+            border: 8px solid var(--accent-color);
+            transition: all 0.5s;
+        }
+
+        .cta-heading {
+            font-family: 'Anton', sans-serif;
+            font-size: 56px;
+            color: var(--bg-color);
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px rgba(255,255,255,0.5);
+            transition: all 0.5s;
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border: 8px solid var(--bg-color);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            font-weight: 800;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+        }
+
+        .cta-text {
+            flex: 1;
+        }
+
+        .cta-text .step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 18px;
+        }
+
+        .step-number {
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 28px;
+            flex-shrink: 0;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+            border: 4px solid white;
+        }
+
+        .step-text {
+            color: var(--bg-color);
+            font-size: 19px;
+            font-weight: 800;
+            line-height: 1.3;
+            transition: all 0.5s;
+        }
+
+        .web-url {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .web-url p {
+            color: var(--bg-color);
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .web-url .url {
+            color: var(--bg-color);
+            font-weight: 800;
+            font-size: 18px;
+            word-break: break-all;
+            transition: all 0.5s;
+        }
+
+        .footer-info {
+            text-align: center;
+            margin-top: 35px;
+            color: var(--text-color);
+            font-size: 16px;
+            padding: 0 40px;
+            transition: all 0.5s;
+        }
+
+        .footer-info strong {
+            color: var(--highlight-color);
+            font-size: 22px;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 800;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+        }
+
+        /* Download section */
+        .download-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+        }
+
+        .download-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 20px 24px;
+            border-radius: 8px;
+            font-family: 'Anton', sans-serif;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        @media print {
+            .app-container {
+                display: block;
+            }
+            .schemes-panel {
+                display: none;
+            }
+            .preview-panel {
+                padding: 0;
+                background: white;
+            }
+            .poster {
+                box-shadow: none !important;
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Panel -->
+        <div class="schemes-panel">
+            <div class="panel-header">
+                <h1>STAND OUT DESIGNS</h1>
+                <p>Designed to grab attention on crowded community boards</p>
+            </div>
+
+            <div class="pro-tip">
+                <h3>🎯 Pro Tip</h3>
+                <p>On busy boards, HIGH CONTRAST and BOLD COLORS win. These designs use thick borders, giant text, and punchy colors to stop scrollers.</p>
+            </div>
+
+            <div class="schemes-grid" id="schemesContainer">
+                <!-- Schemes will be generated by JavaScript -->
+            </div>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="window.print()">
+                    📄 Print / Save as PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="preview-panel">
+            <div class="preview-container">
+                <div class="preview-label">High-Impact A4 Poster Preview</div>
+                
+                <div class="poster" id="poster">
+                    <div class="poster-background"></div>
+                    <div class="diagonal-stripes"></div>
+                    
+                    <div class="content-wrapper">
+                        <div class="alert-banner">
+                            FOOD ALERT
+                        </div>
+
+                        <div class="main-content">
+                            <h1 class="main-headline">
+                                DO YOU KNOW
+                                <span class="highlight">WHAT'S IN YOUR FOOD?</span>
+                            </h1>
+
+                            <div class="problem-box">
+                                <h3>THE HIDDEN TRUTH</h3>
+                                <p>
+                                    UK laws <strong>DON'T REQUIRE</strong> full disclosure of pesticide residues & processing chemicals. You deserve <strong>TRANSPARENCY!</strong>
+                                </p>
+                            </div>
+
+                            <div class="cta-section">
+                                <h2 class="cta-heading">SIGN NOW!</h2>
+                                
+                                <div class="qr-container">
+                                    <div class="qr-placeholder">
+                                        QR CODE HERE
+                                    </div>
+                                    
+                                    <div class="cta-text">
+                                        <div class="step">
+                                            <div class="step-number">1</div>
+                                            <div class="step-text">Scan QR code</div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">2</div>
+                                            <div class="step-text">Sign petition</div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">3</div>
+                                            <div class="step-text">Share it!</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="web-url">
+                                    <p>Or visit:</p>
+                                    <div class="url">petition.parliament.uk/petitions/754897</div>
+                                </div>
+                            </div>
+
+                            <div class="footer-info">
+                                <strong>10,000 SIGNATURES = GOVT RESPONSE</strong>
+                                Deadline: 6 August 2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BOLD, HIGH-CONTRAST COLOR SCHEMES
+        const colorSchemes = [
+            {
+                name: "ELECTRIC GREEN",
+                bgColor: "#1a5f3a",
+                accentColor: "#ff6b35",
+                accentDark: "#d94e1f",
+                highlightColor: "#ffd93d",
+                textColor: "#ffffff",
+                vibe: "🎯 MAX IMPACT • HIGH CONTRAST"
+            },
+            {
+                name: "POWER RED",
+                bgColor: "#8b0000",
+                accentColor: "#ffd700",
+                accentDark: "#b8860b",
+                highlightColor: "#fff44f",
+                textColor: "#ffffff",
+                vibe: "🔥 URGENT • ATTENTION-GRABBING"
+            },
+            {
+                name: "DEEP OCEAN",
+                bgColor: "#003d5b",
+                accentColor: "#ff6b35",
+                accentDark: "#e85d04",
+                highlightColor: "#ffea00",
+                textColor: "#ffffff",
+                vibe: "💪 STRONG • PROFESSIONAL"
+            },
+            {
+                name: "ROYAL PURPLE",
+                bgColor: "#4a148c",
+                accentColor: "#ff5722",
+                accentDark: "#d84315",
+                highlightColor: "#ffeb3b",
+                textColor: "#ffffff",
+                vibe: "👑 BOLD • PREMIUM"
+            },
+            {
+                name: "TRAFFIC ORANGE",
+                bgColor: "#ff6600",
+                accentColor: "#1a1a1a",
+                accentDark: "#000000",
+                highlightColor: "#ffff00",
+                textColor: "#ffffff",
+                vibe: "⚡ EXTREME VISIBILITY"
+            },
+            {
+                name: "FOREST BLACK",
+                bgColor: "#1a3a1a",
+                accentColor: "#ff4444",
+                accentDark: "#cc0000",
+                highlightColor: "#ffff00",
+                textColor: "#ffffff",
+                vibe: "🌲 NATURAL • HIGH CONTRAST"
+            },
+            {
+                name: "NEON YELLOW",
+                bgColor: "#2d2d2d",
+                accentColor: "#ff0066",
+                accentDark: "#cc0052",
+                highlightColor: "#ffff00",
+                textColor: "#ffffff",
+                vibe: "⚠️ STOP-AND-LOOK POWER"
+            },
+            {
+                name: "WINE PUNCH",
+                bgColor: "#5d001e",
+                accentColor: "#ff9500",
+                accentDark: "#e68600",
+                highlightColor: "#ffdd00",
+                textColor: "#ffffff",
+                vibe: "🍷 RICH • COMMANDING"
+            },
+            {
+                name: "TEAL BLAST",
+                bgColor: "#006064",
+                accentColor: "#ff3d00",
+                accentDark: "#dd2c00",
+                highlightColor: "#ffea00",
+                textColor: "#ffffff",
+                vibe: "🌊 FRESH • VIBRANT"
+            },
+            {
+                name: "MIDNIGHT FIRE",
+                bgColor: "#1a1a2e",
+                accentColor: "#ff6b00",
+                accentDark: "#e55d00",
+                highlightColor: "#ffeb3b",
+                textColor: "#ffffff",
+                vibe: "🔥 DRAMATIC • STRIKING"
+            },
+            {
+                name: "SAFETY YELLOW",
+                bgColor: "#ffcc00",
+                accentColor: "#000000",
+                accentDark: "#1a1a1a",
+                highlightColor: "#ffffff",
+                textColor: "#000000",
+                vibe: "⚠️ CONSTRUCTION-GRADE VISIBILITY"
+            },
+            {
+                name: "DEEP CRIMSON",
+                bgColor: "#990000",
+                accentColor: "#000000",
+                accentDark: "#1a1a1a",
+                highlightColor: "#ffff00",
+                textColor: "#ffffff",
+                vibe: "🚨 EMERGENCY-LEVEL ATTENTION"
+            }
+        ];
+
+        let activeSchemeIndex = 0;
+
+        function applyScheme(scheme) {
+            const poster = document.getElementById('poster');
+            poster.style.setProperty('--bg-color', scheme.bgColor);
+            poster.style.setProperty('--accent-color', scheme.accentColor);
+            poster.style.setProperty('--accent-dark', scheme.accentDark);
+            poster.style.setProperty('--highlight-color', scheme.highlightColor);
+            poster.style.setProperty('--text-color', scheme.textColor);
+        }
+
+        function createSchemeCard(scheme, index) {
+            return `
+                <div class="scheme-card ${index === 0 ? 'active' : ''}" 
+                     data-index="${index}"
+                     onmouseenter="previewScheme(${index})"
+                     onmouseleave="restoreActiveScheme()"
+                     onclick="setActiveScheme(${index})"
+                     style="--preview-bg-start: ${scheme.bgColor}; --preview-bg-end: ${scheme.bgColor};">
+                    <div class="scheme-name">${scheme.name}</div>
+                    <div class="color-swatches">
+                        <div class="swatch" style="background: ${scheme.bgColor}"></div>
+                        <div class="swatch" style="background: ${scheme.accentColor}"></div>
+                        <div class="swatch" style="background: ${scheme.highlightColor}"></div>
+                    </div>
+                    <div class="scheme-meta">${scheme.vibe}</div>
+                    ${index < 3 ? '<div class="impact-badge">RECOMMENDED</div>' : ''}
+                </div>
+            `;
+        }
+
+        function previewScheme(index) {
+            applyScheme(colorSchemes[index]);
+        }
+
+        function restoreActiveScheme() {
+            applyScheme(colorSchemes[activeSchemeIndex]);
+        }
+
+        function setActiveScheme(index) {
+            activeSchemeIndex = index;
+            document.querySelectorAll('.scheme-card').forEach((card, i) => {
+                card.classList.toggle('active', i === index);
+            });
+            applyScheme(colorSchemes[index]);
+        }
+
+        function init() {
+            const container = document.getElementById('schemesContainer');
+            container.innerHTML = colorSchemes.map((scheme, index) => createSchemeCard(scheme, index)).join('');
+            applyScheme(colorSchemes[0]);
+        }
+
+        init();
+    </script>
+</body>
+</html>

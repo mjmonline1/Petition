@@ -12,31 +12,36 @@
             box-sizing: border-box;
         }
 
-    @page {
-    size: A4;
-    margin: 0;
-}
+        @page {
+            size: A4 portrait;            
+        }
 
-@media print {
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: auto;
-    }
-
-    body {
-        background: white;
-    }
-
-    .poster {
-        width: 210mm;
-        height: 297mm;
-        margin: 0;
-        box-shadow: none !important;
-        page-break-after: avoid;
-    }
-}
-
+        @media print {
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                height: 100% !important;
+                background: white !important;
+            }
+            .poster {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 auto !important;
+                box-shadow: none !important;
+                background: linear-gradient(135deg, #1a472a 0%, #2d5f3f 100%) !important;
+            }
+            .content-wrapper {
+                padding: 38px 30px 20px !important;
+            }
+            .footer-info {
+                margin-top: 15px !important;
+            }
+            .qr-placeholder {
+                border: 6px solid black !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
 
         body {
             font-family: 'IBM Plex Sans', sans-serif;
@@ -45,6 +50,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 20px;
         }
 
         .poster {
@@ -56,14 +62,10 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
-        /* Decorative background pattern */
         .poster::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0%, transparent 50%);
@@ -76,16 +78,15 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            padding: 50px 40px 40px;
+            padding: 42px 35px 20px;
         }
 
-        /* Alert banner at top */
         .alert-banner {
             background: #ff6b35;
             color: white;
             text-align: center;
-            padding: 15px 20px;
-            margin: -50px -40px 40px;
+            padding: 14px 20px;
+            margin: -42px -35px 30px -35px;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 28px;
             letter-spacing: 2px;
@@ -95,10 +96,10 @@
 
         .main-headline {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 72px;
+            font-size: 68px;
             line-height: 0.95;
             color: #fff;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
             text-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -107,49 +108,38 @@
         .main-headline .highlight {
             color: #ffd93d;
             display: block;
-            font-size: 82px;
-            margin-top: 8px;
-        }
-
-        .question-mark {
-            font-size: 120px;
-            color: #ffd93d;
-            line-height: 1;
-            margin: 20px 0;
-            text-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            font-size: 78px;
+            margin-top: 6px;
         }
 
         .subheadline {
             color: #e8f5e9;
-            font-size: 22px;
-            font-weight: 400;
-            margin-bottom: 30px;
+            font-size: 21px;
+            margin-bottom: 12px;           /* ← reduced from ~22px */
             line-height: 1.4;
-            max-width: 90%;
+            max-width: 92%;
         }
 
         .problem-box {
             background: rgba(255,255,255,0.95);
             border-radius: 12px;
-            padding: 25px;
-            margin: 25px 0;
+            padding: 20px;
+            margin: 12px 0 18px 0;         /* ← reduced vertical space around box */
             border-left: 6px solid #ff6b35;
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
         .problem-box h3 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
+            font-size: 26px;
             color: #1a472a;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
         .problem-box p {
             color: #2d5f3f;
-            font-size: 16px;
-            line-height: 1.6;
-            font-weight: 400;
+            font-size: 15.5px;
+            line-height: 1.55;
         }
 
         .problem-box strong {
@@ -161,53 +151,57 @@
             margin-top: auto;
             background: white;
             border-radius: 16px;
-            padding: 35px;
+            padding: 26px 30px;
             box-shadow: 0 12px 32px rgba(0,0,0,0.3);
             border: 3px solid #ffd93d;
         }
 
         .cta-heading {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 42px;
+            font-size: 40px;
             color: #1a472a;
             text-align: center;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
 
         .qr-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 25px;
+            gap: 18px;
         }
 
         .qr-placeholder {
-            width: 160px;
-            height: 160px;
+            width: 255px;
+            height: 255px;
             background: white;
-            border: 4px dashed #1a472a;
-            border-radius: 12px;
+            border: 7px solid #1a472a;
+            border-radius: 16px;
+            padding: 10px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-            padding: 15px;
-            font-weight: 600;
+            overflow: hidden;
+            image-rendering: pixelated;
+        }
+
+        .qr-placeholder svg {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
         }
 
         .cta-text {
             flex: 1;
+            max-width: 58%;
         }
 
         .cta-text .step {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 13px;
+            margin-bottom: 12px;
         }
 
         .step-number {
@@ -221,27 +215,26 @@
             justify-content: center;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 22px;
-            flex-shrink: 0;
         }
 
         .step-text {
             color: #1a472a;
-            font-size: 17px;
+            font-size: 16.5px;
             font-weight: 600;
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
         .web-url {
             text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 18px;
+            padding-top: 15px;
             border-top: 2px solid #e0e0e0;
         }
 
         .web-url p {
             color: #666;
             font-size: 13px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .web-url .url {
@@ -253,45 +246,26 @@
 
         .footer-info {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 18px;
             color: #e8f5e9;
-            font-size: 14px;
+            font-size: 13.5px;
+            line-height: 1.45;
         }
 
         .footer-info strong {
             color: #ffd93d;
-            font-size: 16px;
+            font-size: 15.5px;
             display: block;
             margin-bottom: 5px;
         }
 
-        /* Decorative corner elements */
-        .corner-decoration {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border: 3px solid rgba(255, 217, 61, 0.3);
-        }
-
-        .corner-decoration.top-right {
-            top: 20px;
-            right: 20px;
-            border-left: none;
-            border-bottom: none;
-        }
-
-        .corner-decoration.bottom-left {
-            bottom: 20px;
-            left: 20px;
-            border-right: none;
-            border-top: none;
+        .footer-info p {
+            margin: 4px 0;
         }
     </style>
 </head>
 <body>
     <div class="poster">
-        
-        
         <div class="content-wrapper">
             <div class="alert-banner">
                 ⚠️ FOOD TRANSPARENCY ALERT
@@ -302,7 +276,6 @@
                 <span class="highlight">what's in your food?</span>
             </h1>
 
-           
             <p class="subheadline">
                 Many pesticide residues and processing chemicals are hidden from food labels
             </p>
@@ -310,7 +283,7 @@
             <div class="problem-box">
                 <h3>The Hidden Truth</h3>
                 <p>
-                    Current UK laws <strong>don't require full disclosure</strong> of all pesticide residues and processing aids used during farming, processing, preservation, and packaging. If you have allergies, dietary restrictions, or simply want to know what you're eating—<strong>you deserve transparency.</strong>
+                    Current UK laws <strong>don't require full disclosure</strong> of all pesticide residues and processing aids used during farming, processing, preservation, and packaging. If you have allergies, dietary restrictions, or simply want to know what you're eating — <strong>you deserve transparency.</strong>
                 </p>
             </div>
 
@@ -319,9 +292,11 @@
                 
                 <div class="qr-container">
                     <div class="qr-placeholder">
-    <!-- Paste your entire SVG code here -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#000000" d="M4 4.5h7m1 0h2m3 0h1m2 0h6m1 0h1m2 0h7M4 5.5h1m5 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m2 0h1m1 0h2m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h3m2 0h4m1 0h1m1 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m2 0h6m5 0h2m2 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m3 0h3m6 0h2m1 0h2m2 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 11.5h3m1 0h1m4 0h2m1 0h1m1 0h1M4 12.5h1m1 0h2m1 0h3m1 0h1m1 0h1m5 0h3m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2M4 13.5h1m1 0h1m2 0h1m4 0h1m1 0h1m3 0h1m1 0h4m1 0h1m2 0h2m1 0h4M5 14.5h1m1 0h5m1 0h4m1 0h1m2 0h1m2 0h1m2 0h3m1 0h3m1 0h2M4 15.5h1m1 0h1m1 0h1m2 0h1m2 0h1m2 0h3m2 0h1m3 0h1m2 0h3m1 0h1M5 16.5h6m1 0h3m7 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 17.5h1m4 0h1m3 0h3m4 0h3m2 0h1m2 0h2m1 0h1m3 0h1M6 18.5h1m2 0h2m1 0h2m1 0h1m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2M4 19.5h2m3 0h1m1 0h1m2 0h1m2 0h2m1 0h1m2 0h8m1 0h3M6 20.5h1m2 0h5m2 0h4m2 0h2m1 0h2m2 0h2m1 0h3M6 21.5h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h3m2 0h5m1 0h1m1 0h2m1 0h2M5 22.5h3m2 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h2m1 0h2M6 23.5h1m1 0h2m1 0h1m1 0h1m2 0h1m3 0h1m3 0h2m1 0h3m2 0h1m3 0h1M4 24.5h1m1 0h3m1 0h2m2 0h3m1 0h1m3 0h3m3 0h2m3 0h3M4 25.5h1m3 0h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h2m5 0h1m1 0h1m5 0h1M6 26.5h2m1 0h2m2 0h2m3 0h1m1 0h3m2 0h3m2 0h2m3 0h2M5 27.5h2m1 0h1m3 0h1m3 0h2m2 0h1m1 0h2m2 0h1m2 0h1m3 0h1M4 28.5h1m2 0h4m2 0h1m1 0h2m1 0h4m6 0h6m2 0h1M12 29.5h1m1 0h1m3 0h4m1 0h1m4 0h1m3 0h2m1 0h1M4 30.5h7m1 0h1m4 0h1m2 0h1m2 0h1m2 0h3m1 0h1m1 0h1M4 31.5h1m5 0h1m1 0h5m1 0h1m1 0h1m4 0h4m3 0h5M4 32.5h1m1 0h3m1 0h1m3 0h1m2 0h3m1 0h1m2 0h1m2 0h6m1 0h2M4 33.5h1m1 0h3m1 0h1m1 0h3m3 0h1m3 0h4m1 0h1m3 0h1m1 0h1m1 0h2M4 34.5h1m1 0h3m1 0h1m1 0h1m1 0h3m6 0h1m2 0h3m1 0h2m2 0h1M4 35.5h1m5 0h1m2 0h1m4 0h6m5 0h1m1 0h2m3 0h1M4 36.5h7m1 0h1m3 0h1m2 0h4m1 0h2m4 0h1m1 0h1m1 0h1"/></svg>
-</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges">
+                            <path fill="#ffffff" d="M0 0h41v41H0z"/>
+                            <path stroke="#000000" d="M4 4.5h7m1 0h2m3 0h1m2 0h6m1 0h1m2 0h7M4 5.5h1m5 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m2 0h1m1 0h2m4 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h3m2 0h4m1 0h1m1 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m2 0h6m5 0h2m2 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m3 0h3m6 0h2m1 0h2m2 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 11.5h3m1 0h1m4 0h2m1 0h1m1 0h1M4 12.5h1m1 0h2m1 0h3m1 0h1m1 0h1m5 0h3m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2M4 13.5h1m1 0h1m2 0h1m4 0h1m1 0h1m3 0h1m1 0h4m1 0h1m2 0h2m1 0h4M5 14.5h1m1 0h5m1 0h4m1 0h1m2 0h1m2 0h1m2 0h3m1 0h3m1 0h2M4 15.5h1m1 0h1m1 0h1m2 0h1m2 0h1m2 0h3m2 0h1m3 0h1m2 0h3m1 0h1M5 16.5h6m1 0h3m7 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 17.5h1m4 0h1m3 0h3m4 0h3m2 0h1m2 0h2m1 0h1m3 0h1M6 18.5h1m2 0h2m1 0h2m1 0h1m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2M4 19.5h2m3 0h1m1 0h1m2 0h1m2 0h2m1 0h1m2 0h8m1 0h3M6 20.5h1m2 0h5m2 0h4m2 0h2m1 0h2m2 0h2m1 0h3M6 21.5h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h3m2 0h5m1 0h1m1 0h2m1 0h2M5 22.5h3m2 0h3m2 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h2m1 0h2M6 23.5h1m1 0h2m1 0h1m1 0h1m2 0h1m3 0h1m3 0h2m1 0h3m2 0h1m3 0h1M4 24.5h1m1 0h3m1 0h2m2 0h3m1 0h1m3 0h3m3 0h2m3 0h3M4 25.5h1m3 0h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h2m5 0h1m1 0h1m5 0h1M6 26.5h2m1 0h2m2 0h2m3 0h1m1 0h3m2 0h3m2 0h2m3 0h2M5 27.5h2m1 0h1m3 0h1m3 0h2m2 0h1m1 0h2m2 0h1m2 0h1m3 0h1M4 28.5h1m2 0h4m2 0h1m1 0h2m1 0h4m6 0h6m2 0h1M12 29.5h1m1 0h1m3 0h4m1 0h1m4 0h1m3 0h2m1 0h1M4 30.5h7m1 0h1m4 0h1m2 0h1m2 0h1m2 0h3m1 0h1m1 0h1M4 31.5h1m5 0h1m1 0h5m1 0h1m1 0h1m4 0h4m3 0h5M4 32.5h1m1 0h3m1 0h1m3 0h1m2 0h3m1 0h1m2 0h1m2 0h6m1 0h2M4 33.5h1m1 0h3m1 0h1m1 0h3m3 0h1m3 0h4m1 0h1m3 0h1m1 0h1m1 0h2M4 34.5h1m1 0h3m1 0h1m1 0h1m1 0h3m6 0h1m2 0h3m1 0h2m2 0h1M4 35.5h1m5 0h1m2 0h1m4 0h6m5 0h1m1 0h2m3 0h1M4 36.5h7m1 0h1m3 0h1m2 0h4m1 0h2m4 0h1m1 0h1m1 0h1"/>
+                        </svg>
+                    </div>
                     
                     <div class="cta-text">
                         <div class="step">
@@ -346,18 +321,13 @@
             </div>
 
             <div class="footer-info">
-            <strong>This starts with you.</strong>
-
-           <p> 10,000 signatures = Official Government response  
-            100,000 signatures = Parliamentary debate  
-            </p>
-
-            <p>Be part of the movement for full food transparency.
-            Deadline: 6 August 2026</strong></div>
-
+                <strong>This starts with you.</strong>
+                <p>10,000 signatures = Official Government response<br>
+                   100,000 signatures = Parliamentary debate</p>
+                <p>Be part of the movement for full food transparency.<br>
+                   Deadline: 6 August 2026</p>
             </div>
         </div>
     </div>
 </body>
 </html>
-

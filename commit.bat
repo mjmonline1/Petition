@@ -1,3 +1,3 @@
-git add .
-git commit -m "quick update"
+git add -A
+git commit -m %1
 git push
